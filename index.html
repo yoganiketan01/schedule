@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Yoganiketan — Weekly Schedule</title>
+  <link href="style.css" rel="stylesheet">
+</head>
+<body>
+  <header class="site">
+    <div>
+      <h1>Yoganiketan — Weekly Schedule</h1>
+      <p class="lead">Week-wise cards • Day-wise accordion • Live sync with Google Sheet</p>
+    </div>
+    <div class="header-actions">
+      <button id="refreshBtn" class="btn ghost">Refresh</button>
+      <button id="addBtn" class="btn">+ Add New</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="controls">
+      <div class="control-item">
+        <label>From</label>
+        <input id="fromDate" type="date">
+      </div>
+      <div class="control-item">
+        <label>To</label>
+        <input id="toDate" type="date">
+      </div>
+      <div class="control-item">
+        <label>Day</label>
+        <select id="dayFilter">
+          <option value="">All Days</option>
+          <option>Mon</option><option>Tue</option><option>Wed</option><option>Thu</option><option>Fri</option><option>Sat</option><option>Sun</option>
+        </select>
+      </div>
+      <div class="control-item">
+        <label>Week</label>
+        <input id="weekFilter" type="text" placeholder="e.g., 1">
+      </div>
+      <div class="control-item search-item">
+        <label>Search</label>
+        <input id="searchBox" type="text" placeholder="Search Asana / Pranayama / Remarks ...">
+      </div>
+      <div class="control-actions">
+        <button id="applyBtn" class="btn">Apply</button>
+        <button id="resetBtn" class="btn ghost">Reset</button>
+      </div>
+    </section>
+
+    <section id="weeks" class="weeks-grid" aria-live="polite"></section>
+
+    <div class="footer">Default range: Today → +7 days.</div>
+  </main>
+
+  <!-- Modal: Create / Edit -->
+  <div id="modal" class="modal" aria-hidden="true" style="display:none">
+    <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <h3 id="modalTitle">Edit Record</h3>
+      <form id="editForm" onsubmit="return false;">
+        <input type="hidden" id="rowNumber" />
+        <div class="form-grid">
+          <label>WEEK<input id="fld_WEEK" type="text"></label>
+          <label>Date<input id="fld_Date" type="date"></label>
+          <label>DAY<input id="fld_DAY" type="text"></label>
+          <label>1ˢᵗ Demo<input id="fld_1st" type="text"></label>
+          <label>2ⁿᵈ Demo<input id="fld_2nd" type="text"></label>
+          <label>ASANA/KRIYA<input id="fld_ASANA" type="text"></label>
+          <label>PRANAYAMA NAME<input id="fld_PRANAYAMA" type="text"></label>
+          <label style="grid-column:1/-1">Remarks<textarea id="fld_Remarks"></textarea></label>
+        </div>
+
+        <div class="modal-actions">
+          <button id="saveBtn" class="btn">Save</button>
+          <button id="deleteBtn" class="btn ghost" style="background:transparent;color:#d33;border:1px solid rgba(211,50,50,0.12)">Delete</button>
+          <button id="closeModalBtn" class="btn ghost">Close</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
